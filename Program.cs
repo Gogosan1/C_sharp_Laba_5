@@ -8,3 +8,17 @@
         }
     }
 }
+
+public enum Gender
+{
+    Male = 1,
+    Female
+}
+
+public enum Recruation 
+{ 
+    Commission = 1, 
+    Hourly, 
+    Both, 
+    None 
+}
