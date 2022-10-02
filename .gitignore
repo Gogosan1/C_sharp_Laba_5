@@ -54,7 +54,7 @@
 *.orig
  
 # Visual Studio temp something
-.vs/
+*.vs/
  
 # Other Extensions
 *.vspscc

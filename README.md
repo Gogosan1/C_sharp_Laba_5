@@ -5,3 +5,4 @@
 4. Secondly we need to write interface or kind of menu for interaction classes with each other ( deadline 25.09.2022 )
 5. Third we need build the project and fix bugs ( deadline  02.10.2022 )
 6. In the end we can add some changes ( deadline 09.10.2022 )
+7. Well done
