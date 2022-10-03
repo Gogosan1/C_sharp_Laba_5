@@ -126,7 +126,7 @@ public class Company
                 var minWorkingHours = (int)worker.standardOfWorkingHours;
                 var maxWorkingHours = (int)(minWorkingHours + (24 - minWorkingHours) / 2);
 
-                worker.work(randomNumbers.Next() % maxWorkingHours);
+                worker.Work(randomNumbers.Next() % maxWorkingHours);
             }
 
             foreach (var t in CommissionWageWorkers)

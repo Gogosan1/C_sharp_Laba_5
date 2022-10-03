@@ -79,10 +79,10 @@ public class HourlyWageWorker : Worker
         string fullName;
         int normalHourlyWage, overtimeHourlyWage, standardOfWorkingHours;
 
-        Console.Write("Enter fullname: ");
+        Console.WriteLine("Enter fullname: ");
         fullName = Console.ReadLine();
 
-        Console.Write("Enter gender(1 - Male, 2 - Female): ");
+        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
         gender = Console.ReadLine();
 
         if (gender != Gender.Male || gender != Gender.Female)
@@ -91,39 +91,39 @@ public class HourlyWageWorker : Worker
         }
 
         //тут криво и некрасиво, надо подумать
-        Console.Write("Enter normal hourly wage: ");
+        Console.WriteLine("Enter normal hourly wage: ");
         normalHourlyWage = Convert.ToInt32(Console.ReadLine());
 
         while (!int.TryParse(Console.ReadLine(), out normalHourlyWage))
         {
-            Console.Write("Invalid input!");
-            Console.Write("Enter normal hourly wage: ");
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Enter normal hourly wage: ");
             normalHourlyWage = Convert.ToInt32(Console.ReadLine());
         }
 
-        Console.Write("Enter overtime wage: ");
+        Console.WriteLine("Enter overtime wage: ");
         overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
 
         while (!int.TryParse(Console.ReadLine(), out overtimeHourlyWage))
         {
-            Console.Write("Invalid input!");
-            Console.Write("Enter overtime wage: ");
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Enter overtime wage: ");
             overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
         }
 
 
-        Console.Write("Enter standard of working hours: ");
+        Console.WriteLine("Enter standard of working hours: ");
         standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
 
         while (!int.TryParse(Console.ReadLine(), out standardOfWorkingHours))
         {
-            Console.Write("Invalid input!");
-            Console.Write("Enter standard of working hours: ");
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Enter standard of working hours: ");
             standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
         }
 
         HourlyWageWorker worker =
-            HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
+            new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
                              standardOfWorkingHours);
         return worker;
     }

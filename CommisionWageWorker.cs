@@ -5,12 +5,12 @@ using System.Reflection;
 public class CommissionWageWorker : Worker
 {
     //private static readonly int locationSalary;
-   // private static readonly int locationPercentage;
+    // private static readonly int locationPercentage;
     private static int goodsSoldSum;
     // конструктор
-    public CommissionWageWorker(string _fullName, Gender _gender, int _salary, int _percentage) 
+    public CommissionWageWorker(string _fullName, Gender _gender, int _salary, int _percentage)
         : base(_fullName, _gender)
-    {  
+    {
         //исключения поправить    
         if (Salary <= 0)
             throw new ArgumentOutOfRangeException("Invalid 'salary' argument. ",
@@ -50,58 +50,45 @@ public class CommissionWageWorker : Worker
     public override Gender Description { get; init; }
     public override string FullName { get; init; }
 
-}
+    public CommissionWageWorker enterCommissionWageWorker() {
+        
+        Gender gender;
+        string fullName;
+        int salary, percentage;
 
-internal record struct NewStruct(object Item1, object Item2)
-{
-    public static implicit operator (object, object)(NewStruct value)
-    {
-        return (value.Item1, value.Item2);
+        Console.WriteLine( "Enter fullname: ");
+        fullName = Console.ReadLine();
+
+        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
+        gender = Console.Read(); // написать свой метод для считывания гендера
+
+
+        /////////////////////////// не будет работать
+        if (gender != Gender.Male || gender != Gender.Female)
+        {
+            throw new ArgumentException("Invalid value. Expected '1' or '2'\n");
+        }
+
+        Console.WriteLine( "Enter salary: ");
+        salary = Console.Read();
+
+        if (Read.fail()) {
+            throw new ArgumentException("Invalid value. Expected integer\n");
+        }
+
+        Console.WriteLine( "Enter percentage: ");
+        percentage = Console.Read();
+
+        if (Read.fail()) {
+            throw new ArgumentException("Invalid value. Expected integer\n");
+        }
+
+        CommissionWageWorker worker =
+           new CommissionWageWorker(fullName, gender, salary, percentage);
+
+        return worker;
     }
-
-    public static implicit operator NewStruct((object, object) value)
-    {
-        return new NewStruct(value.Item1, value.Item2);
-    }
 }
-
-/*CommissionWageWorker enterCommissionWageWorker(){
- Gender gender;
-  std::string fullName;
-  int salary, percentage;
-
-  std::cout << "Enter fullname: ";
-
-  std::cin.get();
-  std::getline(std::cin, fullName);
-
-  std::cout << "Enter gender(1 - Male, 2 - Female): ";
-  std::cin >> gender;
-
-  if (std::cin.fail()) {
-    throw std::invalid_argument("Invalid value. Expected '1' or '2'\n");
-  }
-
-  std::cout << "Enter salary: ";
-  std::cin >> salary;
-
-  if (std::cin.fail()) {
-    throw std::invalid_argument("Invalid value. Expected integer\n");
-  }
-
-  std::cout << "Enter percentage: ";
-  std::cin >> percentage;
-
-  if (std::cin.fail()) {
-    throw std::invalid_argument("Invalid value. Expected integer\n");
-  }
-
-  CommissionWageWorker worker =
-      CommissionWageWorker(fullName, gender, salary, percentage);
-
-  return worker;
-}*/
-
 // перегруженный оператор вывода
 /*std::ostream &operator<<(std::ostream &stream,
                          const CommissionWageWorker &worker) {
