@@ -38,7 +38,7 @@ public class HourlyWageWorker : Worker
 
                                         "Value must be greater than zero.");
         }
-        
+
         int standardOfWorkingHours = _standardOfWorkingHours;
         normalHourlyWage = _normalHourlyWage;
         overtimeHourlyWage = _overtimeHourlyWage;
@@ -46,7 +46,7 @@ public class HourlyWageWorker : Worker
         workedDays = 0;
     }
 
-    public void work(int hours)
+    public override void Work(int hours)
     {
         hoursWorked += hours;
         workedDays++;
@@ -69,9 +69,9 @@ public class HourlyWageWorker : Worker
     //сделала свойства на твоем примере, но пока искала инфу, появилось много вопросов
     public override Gender Description { get; init; }
     public override string FullName { get; init; }
-    public override int normalHourlyWage { get; init; }
-    public override int overtimeHourlyWage { get; init; }
-    public override int standardOfWorkingHours { get; init; }
+    public int normalHourlyWage { get; init; }
+    public int overtimeHourlyWage { get; init; }
+    public int standardOfWorkingHours { get; init; }
 
     public Worker enterHourlyWageWorker()
     {
@@ -79,21 +79,21 @@ public class HourlyWageWorker : Worker
         string fullName;
         int normalHourlyWage, overtimeHourlyWage, standardOfWorkingHours;
 
-        Console.Write( "Enter fullname: ");
-        fullName= Console.ReadLine();
-        
-        Console.Write("Enter gender(1 - Male, 2 - Female): ");
-        gender =Console.ReadLine();
+        Console.Write("Enter fullname: ");
+        fullName = Console.ReadLine();
 
-        if (gender!=1 || gender!=2)
+        Console.Write("Enter gender(1 - Male, 2 - Female): ");
+        gender = Console.ReadLine();
+
+        if (gender != Gender.Male || gender != Gender.Female)
         {
             throw new ArgumentException("Invalid value. Expected '1' or '2'\n");
         }
 
         //тут криво и некрасиво, надо подумать
         Console.Write("Enter normal hourly wage: ");
-        normalHourlyWage=Convert.ToInt32(Console.ReadLine());
-        
+        normalHourlyWage = Convert.ToInt32(Console.ReadLine());
+
         while (!int.TryParse(Console.ReadLine(), out normalHourlyWage))
         {
             Console.Write("Invalid input!");
@@ -102,7 +102,7 @@ public class HourlyWageWorker : Worker
         }
 
         Console.Write("Enter overtime wage: ");
-        overtimeHourlyWage=Convert.ToInt32(Console.ReadLine());
+        overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
 
         while (!int.TryParse(Console.ReadLine(), out overtimeHourlyWage))
         {
@@ -110,10 +110,10 @@ public class HourlyWageWorker : Worker
             Console.Write("Enter overtime wage: ");
             overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
         }
-        
+
 
         Console.Write("Enter standard of working hours: ");
-        standardOfWorkingHours=Convert.ToInt32(Console.ReadLine());
+        standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
 
         while (!int.TryParse(Console.ReadLine(), out standardOfWorkingHours))
         {
@@ -122,7 +122,7 @@ public class HourlyWageWorker : Worker
             standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
         }
 
-        HourlyWageWorker worker = 
+        HourlyWageWorker worker =
             HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
                              standardOfWorkingHours);
         return worker;
