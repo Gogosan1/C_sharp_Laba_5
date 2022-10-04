@@ -93,14 +93,3 @@ public class CommissionWageWorker : Worker
         return worker;
     }
 }
-// перегруженный оператор вывода
-/*std::ostream &operator<<(std::ostream &stream,
-                         const CommissionWageWorker &worker) {
-  stream << " {"
-         << "\n   fullName: " << worker.FullName()
-         << "\n   gender: " << worker.Gender()
-         << "\n   salary: " << worker.Salary()
-         << "\n   percentage: " << worker.Percentage() << "\n }";
-
-  return stream;
-}*/

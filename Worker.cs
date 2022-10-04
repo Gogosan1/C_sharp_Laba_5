@@ -4,6 +4,11 @@ namespace PayrolSystem;
 
 public abstract class Worker
 {
+    public enum Gender
+    {
+        Male = 1,
+        Female
+    }
     public Worker(string fullName, Gender gender)
     {
         if (fullName.Length == 0)

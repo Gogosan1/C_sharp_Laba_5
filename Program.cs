@@ -4,21 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Menu menu = Menu();
+            menu.listen();
         }
     }
-}
-
-public enum Gender
-{
-    Male = 1,
-    Female
-}
-
-public enum Recruation 
-{ 
-    Commission = 1, 
-    Hourly, 
-    Both, 
-    None 
 }

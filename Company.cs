@@ -8,6 +8,14 @@ namespace C_sharp_laba_5;
 using System.Collections.Generic;
 public class Company
 {
+    public enum Recruation
+    {
+        Commission = 1,
+        Hourly,
+        Both,
+        None
+    }
+
     private List<CommissionWageWorker> CommissionWageWorkers;
     private List<HourlyWageWorker> HourlyWageWorkers;
     private int WorkedDaysCount;
