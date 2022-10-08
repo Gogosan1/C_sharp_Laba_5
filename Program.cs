@@ -6,8 +6,8 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Menu menu = Menu();
-            menu.listen();
+            Menu menu = new Menu();
+            menu.Listen();
         }
     }
 }

@@ -24,7 +24,7 @@ public class Menu
     {
         try
         {
-            HourlyWageWorker worker = enterHourlyWageWorker();
+            HourlyWageWorker worker = EnterHourlyWageWorker();
             company.RecruitHourlyWageWorker(worker);
             Console.Write("Worker has been successfully recruited!\n");
         }
@@ -38,7 +38,7 @@ public class Menu
     {
         try
         {
-            CommissionWageWorker worker = company.enterCommissionWageWorker();
+            CommissionWageWorker worker = EnterCommissionWageWorker();
             company.RecruitCommissionWageWorker(worker);
             Console.Write("Worker has been successfully recruited!\n");
         }
@@ -91,18 +91,18 @@ public class Menu
         Console.Write("Worker has been successfully fired!\n");
     }
 
-    public void HandlePrintHourlyWageWorkers()
+    private void HandlePrintHourlyWageWorkers()
     {
         Console.Write("Hourly wage workers: ");
         //Console.Write(company.GetHourlyWageWorkers());
     }
-    public void HandlePrintCommissionWageWorkers()
+    private void HandlePrintCommissionWageWorkers()
     {
         Console.Write("Commission wage workers: ");
         //Console.Write(company.GetCommissionWageWorkers());
     }
 
-    public void HandleSimulateWork()
+    private void HandleSimulateWork()
     {
         int days;
         
@@ -126,7 +126,7 @@ public class Menu
         return true;
     }
     
-    public void listen()
+    public void Listen()
   {
 
 	// Тестовые данные

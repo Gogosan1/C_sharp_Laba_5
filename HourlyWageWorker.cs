@@ -71,9 +71,10 @@ public class HourlyWageWorker : Worker
     public int overtimeHourlyWage { get; init; }
     public int standardOfWorkingHours { get; init; }
 
-    public Worker enterHourlyWageWorker()
+    public Worker EnterHourlyWageWorker()
     {
         Gender gender;
+        int genderBuf;
         string fullName;
         int normalHourlyWage, overtimeHourlyWage, standardOfWorkingHours;
 
@@ -81,7 +82,16 @@ public class HourlyWageWorker : Worker
         fullName = Console.ReadLine();
 
         Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
-        gender = Console.ReadLine();
+        genderBuf = Convert.ToInt32(Console.ReadLine());
+
+        if (genderBuf == 1)
+        {
+            gender = Gender.Male;
+        }
+        else
+        {
+            gender = Gender.Female;
+        }
 
         if (gender != Gender.Male || gender != Gender.Female)
         {

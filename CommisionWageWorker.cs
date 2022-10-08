@@ -49,7 +49,7 @@ public class CommissionWageWorker : Worker
     public override Gender Description { get; init; }
     public override string FullName { get; init; }
 
-    public CommissionWageWorker enterCommissionWageWorker() 
+    public CommissionWageWorker EnterCommissionWageWorker() 
     {
         Gender gender;
         string fullName;
@@ -74,16 +74,16 @@ public class CommissionWageWorker : Worker
         Console.WriteLine( "Enter salary: ");
         salary = Console.Read();
 
-        if (Read.fail()) {
-            throw new ArgumentException("Invalid value. Expected integer\n");
-        }
+        // if (Read.fail()) {
+        //     throw new ArgumentException("Invalid value. Expected integer\n");
+        // }
 
         Console.WriteLine( "Enter percentage: ");
         percentage = Console.Read();
 
-        if (Read.fail()) {
-            throw new ArgumentException("Invalid value. Expected integer\n");
-        }
+        // if (Read.fail()) {
+        //     throw new ArgumentException("Invalid value. Expected integer\n");
+        // }
 
         CommissionWageWorker worker =
            new CommissionWageWorker(fullName, gender, salary, percentage);
