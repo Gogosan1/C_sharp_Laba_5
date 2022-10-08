@@ -71,7 +71,7 @@ public class HourlyWageWorker : Worker
     public int overtimeHourlyWage { get; init; }
     public int standardOfWorkingHours { get; init; }
 
-    public Worker EnterHourlyWageWorker()
+    public HourlyWageWorker EnterHourlyWageWorker()
     {
         Gender gender;
         int genderBuf;
