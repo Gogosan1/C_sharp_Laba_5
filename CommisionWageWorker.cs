@@ -43,45 +43,4 @@ public class CommissionWageWorker : Worker
     public override Gender Description { get; init; }
     public override string FullName { get; init; }
 
-    public static CommissionWageWorker EnterCommissionWageWorker() 
-    {
-        Gender gender;
-        string fullName;
-        int salary, percentage;
-
-        Console.WriteLine( "Enter fullname: ");
-        fullName = Console.ReadLine();
-
-        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
-        int intgender; 
-        intgender = Console.Read(); // написать свой метод для считывания гендера
-
-        if (intgender != 1 || intgender != 2)
-        {
-            throw new ArgumentException("Invalid value. Expected '1' or '2'\n");
-        }
-        if (intgender == 1)
-            gender = Gender.Male;
-        else
-            gender = Gender.Female;
-
-        Console.WriteLine( "Enter salary: ");
-        salary = Console.Read();
-
-        // if (Read.fail()) {
-        //     throw new ArgumentException("Invalid value. Expected integer\n");
-        // }
-
-        Console.WriteLine( "Enter percentage: ");
-        percentage = Console.Read();
-
-        // if (Read.fail()) {
-        //     throw new ArgumentException("Invalid value. Expected integer\n");
-        // }
-
-        CommissionWageWorker worker =
-           new CommissionWageWorker(fullName, gender, salary, percentage);
-
-        return worker;
-    }
 }

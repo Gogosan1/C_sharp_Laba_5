@@ -1,18 +1,118 @@
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using PayrolSystem;
+using static PayrolSystem.Worker;
 
 namespace C_sharp_laba_5;
 
 
 public class Menu
 {
-    [DllImport("user32.dll")]
-    public static extern HourlyWageWorker EnterHourlyWageWorker();
-    [DllImport("user32.dll")]
-    public static extern CommissionWageWorker EnterCommissionWageWorker();
+    public static CommissionWageWorker EnterCommissionWageWorker()
+    {
+        Gender gender;
+        string fullName;
+        int salary, percentage;
+        int genderBuf;
 
-    private Company company;
+        Console.WriteLine("Enter fullname: ");
+        fullName = Console.ReadLine();
+
+        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
+        genderBuf = Convert.ToInt32(Console.ReadLine());
+
+        if (genderBuf != 1 && genderBuf != 2)
+            throw new ArgumentException("Invalid value. Expected '1' or '2'\n");
+
+
+        if (genderBuf == 1)
+            gender = Gender.Male;
+        else
+            gender = Gender.Female;
+
+        Console.WriteLine("Enter salary: ");
+        salary = Convert.ToInt32(Console.ReadLine());
+
+        // if (Read.fail()) {
+        //     throw new ArgumentException("Invalid value. Expected integer\n");
+        // }
+
+        Console.WriteLine("Enter percentage: ");
+        percentage = Convert.ToInt32(Console.ReadLine());
+
+        // if (Read.fail()) {
+        //     throw new ArgumentException("Invalid value. Expected integer\n");
+        // }
+
+        CommissionWageWorker worker =
+           new CommissionWageWorker(fullName, gender, salary, percentage);
+
+        return worker;
+    }
+    public HourlyWageWorker EnterHourlyWageWorker()
+    {
+        Gender gender;
+        int genderBuf;
+        string fullName;
+        int normalHourlyWage, overtimeHourlyWage, standardOfWorkingHours;
+
+        Console.WriteLine("Enter fullname: ");
+        fullName = Console.ReadLine();
+
+        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
+        genderBuf = Convert.ToInt32(Console.ReadLine());
+
+        if (genderBuf != 1 && genderBuf != 2)
+            throw new ArgumentException("Invalid value. Expected '1' or '2'\n");
+
+        if (genderBuf == 1)
+            gender = Gender.Male;
+        else
+            gender = Gender.Female;
+
+
+
+        //тут криво и некрасиво, надо подумать
+        Console.WriteLine("Enter normal hourly wage: ");
+        normalHourlyWage = Convert.ToInt32(Console.ReadLine());
+
+        while (!int.TryParse(Console.ReadLine(), out normalHourlyWage))
+        {
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Enter normal hourly wage: ");
+            normalHourlyWage = Convert.ToInt32(Console.ReadLine());
+        }
+
+        Console.WriteLine("Enter overtime wage: ");
+        overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
+
+        while (!int.TryParse(Console.ReadLine(), out overtimeHourlyWage))
+        {
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Enter overtime wage: ");
+            overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
+        }
+
+
+        Console.WriteLine("Enter standard of working hours: ");
+        standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
+
+        while (!int.TryParse(Console.ReadLine(), out standardOfWorkingHours))
+        {
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Enter standard of working hours: ");
+            standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
+        }
+
+        HourlyWageWorker worker =
+            new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
+                             standardOfWorkingHours);
+
+        return worker;
+    }
+
+private Company company;
     private readonly uint ADD_HOURLY_WAGE_WORKER_OPTION = 1;
     private readonly uint ADD_COMMISSION_WAGE_WORKER_OPTION = 2;
     private readonly uint FIRE_WORKER_BY_FULLNAME_OPTION = 3;
@@ -34,7 +134,7 @@ public class Menu
             company.RecruitHourlyWageWorker(worker);
             Console.Write("Worker has been successfully recruited!\n");
         }
-        catch (System.Exception e)
+        catch (System.Exception e) // не выводит !!!!!
         {
             Debug.WriteLine("Exception: " + e.Message);
         }
@@ -113,7 +213,7 @@ public class Menu
         int days;
         
         Console.Write("Enter number of working days: ");
-        days = Console.Read();
+        days = Convert.ToInt32(Console.ReadLine());
 
         if (HandleError("Error! Invalid value. Expected unsigned integer\n"))
             return;
@@ -134,14 +234,14 @@ public class Menu
     
     public void Listen()
   {
-	  company.RecruitHourlyWageWorker(new HourlyWageWorker("Petr Petrov", Worker.Gender.Male, 500, 700, 10));
+	/*  company.RecruitHourlyWageWorker(new HourlyWageWorker("Petr Petrov", Worker.Gender.Male, 500, 700, 10));
 	company.RecruitHourlyWageWorker(new HourlyWageWorker("Ivan Ivanov", Worker.Gender.Male, 700, 1000, 15));
 	company.RecruitHourlyWageWorker(new HourlyWageWorker("Ekaterina Pavlovna", Worker.Gender.Female, 650, 850, 11));
 
 	company.RecruitCommissionWageWorker(new CommissionWageWorker("Dmitry Dmitrievich", Worker.Gender.Male, 50500, 5));
 	company.RecruitCommissionWageWorker(new CommissionWageWorker("Nataliya Adreevna", Worker.Gender.Female, 60500, 8));
 	company.RecruitCommissionWageWorker(new CommissionWageWorker("Aleksandr Aleksandrovich", Worker.Gender.Male, 54400, 15));
-
+*/
 	while (true)
 	{
 	  Console.Write("\n\tMenu options\n");
@@ -165,7 +265,7 @@ public class Menu
 
 	  int option;
 	  //Перед
-	  option = Console.Read();
+	  option = Convert.ToInt32(Console.ReadLine());
 
 	  if (option < 1 || option > 7)
 	  {
