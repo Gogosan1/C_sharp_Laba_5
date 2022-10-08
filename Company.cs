@@ -1,5 +1,7 @@
 ﻿namespace C_sharp_laba_5;
+
 using System.Collections.Generic;
+
 public class Company
 {
     public enum Recruation : byte
@@ -16,7 +18,7 @@ public class Company
 
     private const int MAX_PRICE = 15000;
     private const int WORKING_CYCLE = 15;
-    
+
     public Company()
     {
         CommissionWageWorkers = new List<CommissionWageWorker>();
@@ -27,20 +29,16 @@ public class Company
     public void RecruitHourlyWageWorker(HourlyWageWorker newWorker)
     {
         foreach (var i in HourlyWageWorkers)
-        {
             if (i.FullName == newWorker.FullName)
-                throw new System.ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
-        }
+                throw new ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
         HourlyWageWorkers.Add(newWorker);
     }
 
     public void RecruitCommissionWageWorker(CommissionWageWorker newWorker)
     {
         foreach (var t in CommissionWageWorkers)
-        {
             if (t.FullName == newWorker.FullName)
-                throw new System.ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
-        }
+                throw new ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
 
         CommissionWageWorkers.Add(newWorker);
     }
@@ -48,42 +46,36 @@ public class Company
     private void DismissHourlyWageWorker(string fullName)
     {
         foreach (var i in HourlyWageWorkers)
-        {
             if (fullName == i.FullName)
                 HourlyWageWorkers.Remove(i);
-        }
     }
 
     private void DismissCommissionWageWorker(string fullName)
     {
         foreach (var i in CommissionWageWorkers)
-        {
             if (fullName == i.FullName)
                 CommissionWageWorkers.Remove(i);
-        }
     }
 
     public Recruation GetRecruationStatus(string fullName)
     {
         var status = Recruation.None;
 
-        foreach (var t in HourlyWageWorkers.Where(t => t.FullName == fullName))
-        {
-            status = Recruation.Hourly;
-        }
-        
+        foreach (var t in HourlyWageWorkers.Where(t => t.FullName == fullName)) status = Recruation.Hourly;
+
         foreach (var t in CommissionWageWorkers.Where(t => t.FullName == fullName))
-        {
             if (status == Recruation.Hourly)
                 status = Recruation.Both;
             else
                 status = Recruation.Commission;
-        }
         return status;
     }
 
-    public int GetWorkedDaysCount() { return WorkedDaysCount; }
-    
+    public int GetWorkedDaysCount()
+    {
+        return WorkedDaysCount;
+    }
+
     /*
     Доделаю чуть позже, когда разберусь
      
@@ -137,8 +129,8 @@ public class Company
             WorkedDaysCount++;
 
             if (WorkedDaysCount % WORKING_CYCLE != 0) continue;
-            expenses += HourlyWageWorkers.Sum(t => (int)(t.calculateWage()));
-            expenses += CommissionWageWorkers.Sum(t => (int)(t.calculateWage()));
+            expenses += HourlyWageWorkers.Sum(t => (int)t.calculateWage());
+            expenses += CommissionWageWorkers.Sum(t => (int)t.calculateWage());
         }
 
         WorkedDaysCount %= WORKING_CYCLE;

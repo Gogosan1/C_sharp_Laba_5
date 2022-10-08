@@ -1,11 +1,10 @@
-﻿namespace C_sharp_laba_5
+﻿namespace C_sharp_laba_5;
+
+internal class Program
 {
-    class Program
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Menu menu = new Menu();
-            menu.Listen();
-        }
+        var menu = new Menu();
+        menu.Listen();
     }
 }

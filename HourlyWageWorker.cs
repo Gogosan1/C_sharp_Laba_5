@@ -1,43 +1,32 @@
 ﻿using PayrolSystem;
-namespace C_sharp_laba_5;
 
+namespace C_sharp_laba_5;
 
 public class HourlyWageWorker : Worker
 {
     private static int hoursWorked;
     private static int workedDays;
-    public HourlyWageWorker(string _fullName, Gender _gender, int _normalHourlyWage, int _overtimeHourlyWage, int _standardOfWorkingHours) : base(_fullName, _gender)
+
+    public HourlyWageWorker(string _fullName, Gender _gender, int _normalHourlyWage, int _overtimeHourlyWage,
+        int _standardOfWorkingHours) : base(_fullName, _gender)
     {
         if (_standardOfWorkingHours <= 0)
-        {
             throw new ArgumentOutOfRangeException("Invalid 'standardOfWorkingHours' argument. ",
-
                 "Value must be greater than zero.");
-        }
 
         if (_standardOfWorkingHours > 24)
-        {
             throw new ArgumentOutOfRangeException("Invalid 'standardOfWorkingHours' argument. ",
-
                 "The value must be less than 24.");
-        }
 
         if (_normalHourlyWage <= 0)
-        {
             throw new ArgumentOutOfRangeException("Invalid 'normalHourlyWage' argument. ",
-
-                                        "Value must be greater than zero.");
-
-        }
+                "Value must be greater than zero.");
 
         if (_overtimeHourlyWage <= 0)
-        {
             throw new ArgumentOutOfRangeException("Invalid 'overtimeHourlyWage' argument. ",
+                "Value must be greater than zero.");
 
-                                        "Value must be greater than zero.");
-        }
-
-        int standardOfWorkingHours = _standardOfWorkingHours;
+        var standardOfWorkingHours = _standardOfWorkingHours;
         normalHourlyWage = _normalHourlyWage;
         overtimeHourlyWage = _overtimeHourlyWage;
         hoursWorked = 0;
@@ -52,10 +41,10 @@ public class HourlyWageWorker : Worker
 
     public override int calculateWage()
     {
-        int normalHoursWorked = hoursWorked < standardOfWorkingHours * workedDays
-                              ? hoursWorked
-                              : standardOfWorkingHours * workedDays;
-        int overtimeHoursWorked = hoursWorked - normalHoursWorked;
+        var normalHoursWorked = hoursWorked < standardOfWorkingHours * workedDays
+            ? hoursWorked
+            : standardOfWorkingHours * workedDays;
+        var overtimeHoursWorked = hoursWorked - normalHoursWorked;
 
         hoursWorked = 0;
         workedDays = 0;
@@ -70,5 +59,4 @@ public class HourlyWageWorker : Worker
     public int normalHourlyWage { get; init; }
     public int overtimeHourlyWage { get; init; }
     public int standardOfWorkingHours { get; init; }
-
 }
