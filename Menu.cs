@@ -134,14 +134,11 @@ public class Menu
     
     public void Listen()
   {
-
-	// Тестовые данные
-
-	company.RecruitHourlyWageWorker(new HourlyWageWorker("Petr Petrov", Worker.Gender.Male, 500, 700, 10));
+	  company.RecruitHourlyWageWorker(new HourlyWageWorker("Petr Petrov", Worker.Gender.Male, 500, 700, 10));
 	company.RecruitHourlyWageWorker(new HourlyWageWorker("Ivan Ivanov", Worker.Gender.Male, 700, 1000, 15));
 	company.RecruitHourlyWageWorker(new HourlyWageWorker("Ekaterina Pavlovna", Worker.Gender.Female, 650, 850, 11));
 
-	company.RecruitCommissionWageWorker(new CommissionWageWorker("Dmitry Dmitrievich", Worker.Gender.Male, 50000, 5));
+	company.RecruitCommissionWageWorker(new CommissionWageWorker("Dmitry Dmitrievich", Worker.Gender.Male, 50500, 5));
 	company.RecruitCommissionWageWorker(new CommissionWageWorker("Nataliya Adreevna", Worker.Gender.Female, 60500, 8));
 	company.RecruitCommissionWageWorker(new CommissionWageWorker("Aleksandr Aleksandrovich", Worker.Gender.Male, 54400, 15));
 
@@ -166,52 +163,52 @@ public class Menu
 
 	  Console.Write("Enter option: ");
 
-	  uint option;
+	  int option;
 	  //Перед
-	  option = ADD_HOURLY_WAGE_WORKER_OPTION;
+	  option = Console.Read();
 
-	  if (HandleError("Error! Invalid value. Expected unsigned integer\n"))
+	  if (option < 1 || option > 7)
 	  {
 		continue;
 	  }
 
-	  if (option == ADD_HOURLY_WAGE_WORKER_OPTION)
+	  if (option == 1)
 	  {
 		HandleAddHourlyWageWorker();
 		continue;
 	  }
 
-	  if (option == ADD_COMMISSION_WAGE_WORKER_OPTION)
+	  if (option == 2)
 	  {
 		HandleAddCommissionWageWorker();
 		continue;
 	  }
 
-	  if (option == FIRE_WORKER_BY_FULLNAME_OPTION)
+	  if (option == 3)
 	  {
 		HandleFireWorkerByFullName();
 		continue;
 	  }
 
-	  if (option == SIMULATE_WORK_OPTION)
+	  if (option == 4)
 	  {
 		HandleSimulateWork();
 		continue;
 	  }
 
-	  if (option == PRINT_HOURLY_WAGE_WORKERS_OPTION)
+	  if (option == 5)
 	  {
 		HandlePrintHourlyWageWorkers();
 		continue;
 	  }
 
-	  if (option == PRINT_COMMISSION_WAGE_WORKERS_OPTION)
+	  if (option == 6)
 	  {
 		HandlePrintCommissionWageWorkers();
 		continue;
 	  }
 
-	  if (option == EXIT_OPTION)
+	  if (option == 7)
 	  {
 		return;
 	  }

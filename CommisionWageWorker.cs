@@ -11,13 +11,7 @@ public class CommissionWageWorker : Worker
         : base(_fullName, _gender)
     {
         //исключения поправить    
-        if (Salary <= 0)
-            throw new ArgumentOutOfRangeException("Invalid 'salary' argument. ",
-                                                        "Value must be greater than zero");
 
-        if (Percentage <= 0 && Percentage > 100)
-            throw new ArgumentOutOfRangeException("Invalid 'percentage' argument. ",
-                                                          "Value must be greater than zero and less than 100");
 
         Salary = _salary;
         Percentage = _percentage;
