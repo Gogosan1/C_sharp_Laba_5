@@ -82,7 +82,7 @@ public class HourlyWageWorker : Worker
         fullName = Console.ReadLine();
 
         Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
-        genderBuf = Convert.ToInt32(Console.ReadLine());
+        genderBuf = Console.Read();
 
         if (genderBuf == 1)
         {
@@ -100,39 +100,41 @@ public class HourlyWageWorker : Worker
 
         //тут криво и некрасиво, надо подумать
         Console.WriteLine("Enter normal hourly wage: ");
-        normalHourlyWage = Convert.ToInt32(Console.ReadLine());
+        normalHourlyWage = Console.Read();
 
         while (!int.TryParse(Console.ReadLine(), out normalHourlyWage))
         {
             Console.WriteLine("Invalid input!");
             Console.WriteLine("Enter normal hourly wage: ");
-            normalHourlyWage = Convert.ToInt32(Console.ReadLine());
+            normalHourlyWage = Console.Read();
         }
 
         Console.WriteLine("Enter overtime wage: ");
-        overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
+        overtimeHourlyWage = Console.Read();
 
         while (!int.TryParse(Console.ReadLine(), out overtimeHourlyWage))
         {
             Console.WriteLine("Invalid input!");
             Console.WriteLine("Enter overtime wage: ");
-            overtimeHourlyWage = Convert.ToInt32(Console.ReadLine());
+            overtimeHourlyWage = Console.Read();
         }
 
 
         Console.WriteLine("Enter standard of working hours: ");
-        standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
+        standardOfWorkingHours = Console.Read();
 
         while (!int.TryParse(Console.ReadLine(), out standardOfWorkingHours))
         {
             Console.WriteLine("Invalid input!");
             Console.WriteLine("Enter standard of working hours: ");
-            standardOfWorkingHours = Convert.ToInt32(Console.ReadLine());
+            standardOfWorkingHours = Console.Read();
         }
 
         HourlyWageWorker worker =
             new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
                              standardOfWorkingHours);
-        return worker;
+
+        return new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
+                             standardOfWorkingHours);
     }
 }

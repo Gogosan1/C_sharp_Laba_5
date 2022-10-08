@@ -68,7 +68,7 @@ public class Menu
         {
             Console.Write("Worker has been found in both groups.\n");
             Console.Write("Fire from(1 - Hourly, 2 - Commission, 3 - Both): ");
-            int statusBuf = Convert.ToInt32(Console.ReadLine());
+            int statusBuf = Console.Read();
 
             switch (statusBuf)
             {
@@ -107,7 +107,7 @@ public class Menu
         int days;
         
         Console.Write("Enter number of working days: ");
-        days = Convert.ToInt32(Console.ReadLine());
+        days = Console.Read();
 
         if (HandleError("Error! Invalid value. Expected unsigned integer\n"))
             return;
