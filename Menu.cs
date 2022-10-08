@@ -7,8 +7,11 @@ namespace C_sharp_laba_5;
 
 public class Menu
 {
-    public extern HourlyWageWorker EnterHourlyWageWorker();
-    public extern CommissionWageWorker EnterCommissionWageWorker();
+    [DllImport("user32.dll")]
+    public static extern HourlyWageWorker EnterHourlyWageWorker();
+    [DllImport("user32.dll")]
+    public static extern CommissionWageWorker EnterCommissionWageWorker();
+
     private Company company;
     private readonly uint ADD_HOURLY_WAGE_WORKER_OPTION = 1;
     private readonly uint ADD_COMMISSION_WAGE_WORKER_OPTION = 2;

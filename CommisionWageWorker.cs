@@ -49,7 +49,7 @@ public class CommissionWageWorker : Worker
     public override Gender Description { get; init; }
     public override string FullName { get; init; }
 
-    public CommissionWageWorker EnterCommissionWageWorker() 
+    public static CommissionWageWorker EnterCommissionWageWorker() 
     {
         Gender gender;
         string fullName;
