@@ -1,14 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using Microsoft.VisualBasic;
-
-namespace C_sharp_laba_5;
-
+﻿namespace C_sharp_laba_5;
 using System.Collections.Generic;
 public class Company
 {
-    public enum Recruation
+    public enum Recruation : byte
     {
         Commission = 1,
         Hourly,

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PayrolSystem;
+﻿using PayrolSystem;
+namespace C_sharp_laba_5;
 
 
 public class HourlyWageWorker : Worker

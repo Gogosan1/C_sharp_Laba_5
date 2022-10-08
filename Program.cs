@@ -1,4 +1,6 @@
-﻿namespace HelloWorld
+﻿using C_sharp_laba_5;
+
+namespace HelloWorld
 {
     class Program
     {

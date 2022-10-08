@@ -1,7 +1,5 @@
-using Microsoft.VisualBasic;
 using PayrolSystem;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
+namespace C_sharp_laba_5;
 
 public class CommissionWageWorker : Worker
 {
@@ -51,8 +49,8 @@ public class CommissionWageWorker : Worker
     public override Gender Description { get; init; }
     public override string FullName { get; init; }
 
-    public CommissionWageWorker enterCommissionWageWorker() {
-        
+    public CommissionWageWorker enterCommissionWageWorker() 
+    {
         Gender gender;
         string fullName;
         int salary, percentage;
