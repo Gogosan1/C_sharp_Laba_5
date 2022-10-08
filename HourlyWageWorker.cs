@@ -134,7 +134,6 @@ public class HourlyWageWorker : Worker
             new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
                              standardOfWorkingHours);
 
-        return new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
-                             standardOfWorkingHours);
+        return worker;
     }
 }
