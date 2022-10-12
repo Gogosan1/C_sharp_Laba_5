@@ -4,29 +4,32 @@ namespace C_sharp_laba_5;
 
 public class CommissionWageWorker : Worker
 {
-    //private static readonly int locationSalary;
-    // private static readonly int locationPercentage;
-    private static int goodsSoldSum;
+    public int Salary { get; init; }
+    public int Percentage { get; init; }
+    public override Gender Description { get; init; }
+    public override string FullName { get; init; }
 
-    // конструктор
-    public CommissionWageWorker(string _fullName, Gender _gender, int _salary, int _percentage)
-        : base(_fullName, _gender)
+    public CommissionWageWorker(ref string _fullName, Gender _gender, int _salary, int _percentage)
+        : base(ref _fullName, _gender) 
     {
-        //исключения поправить    
+        if (Salary <= 0)
+            throw new ArgumentException("Invalid 'Salary' argument. Salary must be positive number.");
 
-
+        if (_percentage <= 0 && _percentage > 100)
+            throw new ArgumentException("Invalid 'percentage' argument." + 
+                            "Value must be greater than zero and less than 100");
+            
         Salary = _salary;
         Percentage = _percentage;
         goodsSoldSum = 0;
     }
 
-    //методы
     public override void Work(int goodsSold)
     {
         goodsSoldSum += goodsSold;
     }
 
-    public override int calculateWage()
+    public override int CalculateWage()
     {
         var wage = 0;
         var addition = (int)((float)goodsSoldSum * (float)Percentage / 100);
@@ -38,10 +41,7 @@ public class CommissionWageWorker : Worker
 
         return wage;
     }
+    
+    private static int goodsSoldSum;
 
-    //свойства только для чтения
-    public int Salary { get; init; }
-    public int Percentage { get; init; }
-    public override Gender Description { get; init; }
-    public override string FullName { get; init; }
 }

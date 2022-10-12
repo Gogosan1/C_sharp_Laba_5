@@ -12,13 +12,7 @@ public class Company
         None
     }
 
-    private List<CommissionWageWorker> CommissionWageWorkers;
-    private List<HourlyWageWorker> HourlyWageWorkers;
-    private int WorkedDaysCount;
-
-    private const int MAX_PRICE = 15000;
-    private const int WORKING_CYCLE = 15;
-
+    // попробовать инверсию зависимостей
     public Company()
     {
         CommissionWageWorkers = new List<CommissionWageWorker>();
@@ -26,7 +20,7 @@ public class Company
         WorkedDaysCount = 0;
     }
 
-    public void RecruitHourlyWageWorker(HourlyWageWorker newWorker)
+    public void RecruitHourlyWageWorker(ref HourlyWageWorker newWorker)
     {
         foreach (var i in HourlyWageWorkers)
             if (i.FullName == newWorker.FullName)
@@ -34,30 +28,29 @@ public class Company
         HourlyWageWorkers.Add(newWorker);
     }
 
-    public void RecruitCommissionWageWorker(CommissionWageWorker newWorker)
+    public void RecruitCommissionWageWorker(ref CommissionWageWorker newWorker)
     {
-        foreach (var t in CommissionWageWorkers)
-            if (t.FullName == newWorker.FullName)
+        foreach (var i in CommissionWageWorkers)
+            if (i.FullName == newWorker.FullName)
                 throw new ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
-
         CommissionWageWorkers.Add(newWorker);
     }
 
-    private void DismissHourlyWageWorker(string fullName)
+    private void DismissHourlyWageWorker(ref string fullName)
     {
         foreach (var i in HourlyWageWorkers)
             if (fullName == i.FullName)
                 HourlyWageWorkers.Remove(i);
     }
 
-    private void DismissCommissionWageWorker(string fullName)
+    private void DismissCommissionWageWorker(ref string fullName)
     {
         foreach (var i in CommissionWageWorkers)
             if (fullName == i.FullName)
                 CommissionWageWorkers.Remove(i);
     }
 
-    public Recruation GetRecruationStatus(string fullName)
+    public Recruation GetRecruationStatus(/*ref*/ string fullName) // подумай на счёт ссылки
     {
         var status = Recruation.None;
 
@@ -89,19 +82,19 @@ public class Company
     }
     */
 
-    public void DismissWorkerByFullname(string fullName, Recruation status)
+    public void DismissWorkerByFullname(ref string fullName, Recruation status)
     {
         switch (status)
         {
             case Recruation.Both:
-                DismissHourlyWageWorker(fullName);
-                DismissCommissionWageWorker(fullName);
+                DismissHourlyWageWorker(ref fullName);
+                DismissCommissionWageWorker(ref fullName);
                 break;
             case Recruation.Hourly:
-                DismissHourlyWageWorker(fullName);
+                DismissHourlyWageWorker(ref fullName);
                 break;
             case Recruation.Commission:
-                DismissCommissionWageWorker(fullName);
+                DismissCommissionWageWorker(ref fullName);
                 break;
             case Recruation.None:
                 break;
@@ -117,7 +110,7 @@ public class Company
         {
             foreach (var worker in HourlyWageWorkers)
             {
-                var minWorkingHours = (int)worker.standardOfWorkingHours;
+                var minWorkingHours = (int)worker.StandardOfWorkingHours;
                 var maxWorkingHours = (int)(minWorkingHours + (24 - minWorkingHours) / 2);
 
                 worker.Work(randomNumbers.Next() % maxWorkingHours);
@@ -129,12 +122,20 @@ public class Company
             WorkedDaysCount++;
 
             if (WorkedDaysCount % WORKING_CYCLE != 0) continue;
-            expenses += HourlyWageWorkers.Sum(t => (int)t.calculateWage());
-            expenses += CommissionWageWorkers.Sum(t => (int)t.calculateWage());
+            expenses += HourlyWageWorkers.Sum(t => (int)t.CalculateWage());
+            expenses += CommissionWageWorkers.Sum(t => (int)t.CalculateWage());
         }
 
         WorkedDaysCount %= WORKING_CYCLE;
 
         return expenses;
     }
+
+    private List<CommissionWageWorker> CommissionWageWorkers;
+    private List<HourlyWageWorker> HourlyWageWorkers;
+    private int WorkedDaysCount;
+
+    private const int MAX_PRICE = 15000;
+    private const int WORKING_CYCLE = 15;
+
 }

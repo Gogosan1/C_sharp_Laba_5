@@ -12,15 +12,16 @@ public class Menu
         int salary, percentage;
         int genderBuf;
 
+        
         Console.WriteLine("Enter fullname: ");
         fullName = Console.ReadLine();
+
 
         Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
         genderBuf = Convert.ToInt32(Console.ReadLine());
 
         if (genderBuf != 1 && genderBuf != 2)
             throw new ArgumentException("Invalid value. Expected '1' or '2'\n");
-
 
         if (genderBuf == 1)
             gender = Gender.Male;
@@ -42,10 +43,25 @@ public class Menu
         // }
 
         var worker =
-            new CommissionWageWorker(fullName, gender, salary, percentage);
+            new CommissionWageWorker(ref fullName, gender, salary, percentage);
 
         return worker;
     }
+
+    private void HandleAddCommissionWageWorker()
+    {
+        try
+        {
+            var worker = EnterCommissionWageWorker();
+            company.RecruitCommissionWageWorker(worker);
+            Console.Write("Worker has been successfully recruited!\n");
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine("Exception: " + e.Message);
+        }
+    }
+
 
     public HourlyWageWorker EnterHourlyWageWorker()
     {
@@ -102,24 +118,10 @@ public class Menu
         }
 
         var worker =
-            new HourlyWageWorker(fullName, gender, normalHourlyWage, overtimeHourlyWage,
+            new HourlyWageWorker(ref fullName, gender, normalHourlyWage, overtimeHourlyWage,
                 standardOfWorkingHours);
 
         return worker;
-    }
-
-    private Company company;
-    private readonly uint ADD_HOURLY_WAGE_WORKER_OPTION = 1;
-    private readonly uint ADD_COMMISSION_WAGE_WORKER_OPTION = 2;
-    private readonly uint FIRE_WORKER_BY_FULLNAME_OPTION = 3;
-    private readonly uint SIMULATE_WORK_OPTION = 4;
-    private readonly uint PRINT_HOURLY_WAGE_WORKERS_OPTION = 5;
-    private readonly uint PRINT_COMMISSION_WAGE_WORKERS_OPTION = 6;
-    private readonly uint EXIT_OPTION = 7;
-
-    public Menu()
-    {
-        company = new Company();
     }
 
     private void HandleAddHourlyWageWorker()
@@ -136,18 +138,10 @@ public class Menu
         }
     }
 
-    private void HandleAddCommissionWageWorker()
+
+    public Menu()
     {
-        try
-        {
-            var worker = EnterCommissionWageWorker();
-            company.RecruitCommissionWageWorker(worker);
-            Console.Write("Worker has been successfully recruited!\n");
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine("Exception: " + e.Message);
-        }
+        company = new Company();
     }
 
     private void HandleFireWorkerByFullName()
@@ -223,7 +217,7 @@ public class Menu
         Console.Write("\n");
     }
 
-    //доделать
+
     private bool HandleError(in string msg)
     {
         return true;
@@ -231,14 +225,7 @@ public class Menu
 
     public void Listen()
     {
-        /*  company.RecruitHourlyWageWorker(new HourlyWageWorker("Petr Petrov", Worker.Gender.Male, 500, 700, 10));
-        company.RecruitHourlyWageWorker(new HourlyWageWorker("Ivan Ivanov", Worker.Gender.Male, 700, 1000, 15));
-        company.RecruitHourlyWageWorker(new HourlyWageWorker("Ekaterina Pavlovna", Worker.Gender.Female, 650, 850, 11));
-    
-        company.RecruitCommissionWageWorker(new CommissionWageWorker("Dmitry Dmitrievich", Worker.Gender.Male, 50500, 5));
-        company.RecruitCommissionWageWorker(new CommissionWageWorker("Nataliya Adreevna", Worker.Gender.Female, 60500, 8));
-        company.RecruitCommissionWageWorker(new CommissionWageWorker("Aleksandr Aleksandrovich", Worker.Gender.Male, 54400, 15));
-    */
+
         while (true)
         {
             Console.Write("\n\tMenu options\n");
@@ -307,4 +294,14 @@ public class Menu
             //std::cerr << "Error! Undefined menu option\n";
         }
     }
+
+    private readonly Company company;
+    private readonly uint ADD_HOURLY_WAGE_WORKER_OPTION = 1;
+    private readonly uint ADD_COMMISSION_WAGE_WORKER_OPTION = 2;
+    private readonly uint FIRE_WORKER_BY_FULLNAME_OPTION = 3;
+    private readonly uint SIMULATE_WORK_OPTION = 4;
+    private readonly uint PRINT_HOURLY_WAGE_WORKERS_OPTION = 5;
+    private readonly uint PRINT_COMMISSION_WAGE_WORKERS_OPTION = 6;
+    private readonly uint EXIT_OPTION = 7;
+
 }

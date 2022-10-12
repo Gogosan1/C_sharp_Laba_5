@@ -4,17 +4,19 @@ namespace PayrolSystem;
 
 public abstract class Worker
 {
-    public enum Gender
+    public enum Gender : byte
     {
         Male = 1,
         Female
     }
 
-    public Worker(string fullName, Gender gender)
+    public Worker(ref string fullName, Gender gender)
     {
         if (fullName.Length == 0)
-            throw new InvalidDataException(
-                "Invalid 'fullName' argument. The length must be non-zero");
+            throw new ArgumentNullException(String.Format(
+                "Invalid 'fullName' argument. The length must be non-zero"));
+        
+
         FullName = fullName;
         Description = gender;
     }
@@ -22,5 +24,5 @@ public abstract class Worker
     public abstract string FullName { get; init; }
     public abstract Gender Description { get; init; }
     public abstract void Work(int goodsSold);
-    public abstract int calculateWage();
+    public abstract int CalculateWage();
 }
