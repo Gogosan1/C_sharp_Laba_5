@@ -1,5 +1,6 @@
 ﻿namespace C_sharp_laba_5;
 
+using PayrolSystem;
 using System.Collections.Generic;
 
 public class Company
@@ -15,28 +16,44 @@ public class Company
     // попробовать инверсию зависимостей
     public Company()
     {
-        CommissionWageWorkers = new List<CommissionWageWorker>();
-        HourlyWageWorkers = new List<HourlyWageWorker>();
+       //CommissionWageWorkers = new List<CommissionWageWorker>();
+       //HourlyWageWorkers = new List<HourlyWageWorker>();
+        Workers =  new List<Worker>();
         WorkedDaysCount = 0;
     }
 
-    public void RecruitHourlyWageWorker(ref HourlyWageWorker newWorker)
+    public void RecrutWorker (ref Worker newWorker)
+    {
+        foreach (var i in  Workers)
+            if (i.FullName == newWorker.FullName)
+                throw new ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
+        Workers.Add(newWorker);
+
+    }
+   /* public void RecruitHourlyWageWorker(ref HourlyWageWorker newWorker)
     {
         foreach (var i in HourlyWageWorkers)
             if (i.FullName == newWorker.FullName)
                 throw new ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
         HourlyWageWorkers.Add(newWorker);
     }
-
-    public void RecruitCommissionWageWorker(ref CommissionWageWorker newWorker)
+*/
+   /*    public void RecruitCommissionWageWorker(ref CommissionWageWorker newWorker)
     {
         foreach (var i in CommissionWageWorkers)
             if (i.FullName == newWorker.FullName)
                 throw new ArgumentException("Worker with name '" + newWorker.FullName + "' already recruited");
         CommissionWageWorkers.Add(newWorker);
     }
+*/
 
-    private void DismissHourlyWageWorker(ref string fullName)
+    private void DismissWorker (ref string fullName)
+    {
+        foreach (var i in Workers)
+            if (fullName == i.FullName)
+                Workers.Remove(i);
+    }
+   /* private void DismissHourlyWageWorker(ref string fullName)
     {
         foreach (var i in HourlyWageWorkers)
             if (fullName == i.FullName)
@@ -49,7 +66,7 @@ public class Company
             if (fullName == i.FullName)
                 CommissionWageWorkers.Remove(i);
     }
-
+*/
     public Recruation GetRecruationStatus(/*ref*/ string fullName) // подумай на счёт ссылки
     {
         var status = Recruation.None;
@@ -82,7 +99,7 @@ public class Company
     }
     */
 
-    public void DismissWorkerByFullname(ref string fullName, Recruation status)
+    public void Dismis sWorkerByFullname(ref string fullName, Recruation status)
     {
         switch (status)
         {
@@ -99,7 +116,7 @@ public class Company
             case Recruation.None:
                 break;
         }
-    }
+    } // это вобще не надо
 
     public int SimulateWork(int days)
     {
@@ -131,8 +148,9 @@ public class Company
         return expenses;
     }
 
-    private List<CommissionWageWorker> CommissionWageWorkers;
-    private List<HourlyWageWorker> HourlyWageWorkers;
+    //private List<CommissionWageWorker> CommissionWageWorkers;
+    //private List<HourlyWageWorker> HourlyWageWorkers;
+    private List<Worker> Workers;
     private int WorkedDaysCount;
 
     private const int MAX_PRICE = 15000;
