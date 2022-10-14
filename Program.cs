@@ -51,9 +51,17 @@ public class Menu
         // if (Read.fail()) {
         //     throw new ArgumentException("Invalid value. Expected integer\n");
         // }
+        Worker worker = new CommissionWageWorker(ref fullName, gender, salary, percentage);
+        try
+        {
+           // Worker worker = new CommissionWageWorker(ref fullName, gender, salary, percentage);
 
-        Worker worker = new CommissionWageWorker(ref fullName, gender, salary, percentage); // не работает!!!!
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
 
+        }
         return worker;
     }
 
