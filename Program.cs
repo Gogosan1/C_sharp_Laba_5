@@ -1,6 +1,7 @@
 ﻿using C_sharp_laba_5;
 using PayrolSystem;
 using System.Diagnostics;
+using System.IO.Pipes;
 using System.Reflection;
 using static PayrolSystem.Worker;
 
@@ -148,8 +149,11 @@ public class Menu
 
     private void HandlePrintWorkers()
     {
-        Console.Write("Hourly wage workers: ");
-        Console.Write(company.WorkerList);
+        Console.Write("Workers: ");
+        List<Worker> workers = company.WorkerList;
+
+        foreach (var person in workers)
+            Console.Write(person.FullName + " ");
     }
     private void HandleSimulateWork()
     {
