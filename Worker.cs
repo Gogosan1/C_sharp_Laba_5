@@ -12,11 +12,6 @@ public abstract class Worker
 
     public Worker(ref string fullName, Gender gender)
     {
-        if (fullName.Length == 0)
-            throw new ArgumentNullException(String.Format(
-                "Invalid 'fullName' argument. The length must be non-zero"));
-        
-
         FullName = fullName;
         Description = gender;
     }

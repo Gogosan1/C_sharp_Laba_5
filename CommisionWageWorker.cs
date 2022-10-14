@@ -11,14 +11,7 @@ public class CommissionWageWorker : Worker
 
     public CommissionWageWorker(ref string _fullName, Gender _gender, int _salary, int _percentage)
         : base(ref _fullName, _gender) 
-    {
-        if (_salary <= 0)
-            throw new ArgumentException("Invalid 'Salary' argument. Salary must be positive number.");
-
-        if (_percentage <= 0 && _percentage > 100)
-            throw new ArgumentException("Invalid 'percentage' argument." + 
-                            "Value must be greater than zero and less than 100");
-            
+    {     
         Salary = _salary;
         Percentage = _percentage;
         goodsSoldSum = 0;
