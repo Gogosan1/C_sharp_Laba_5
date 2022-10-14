@@ -95,7 +95,7 @@ public class Menu
             string percentageBuf;
             while (true)
             {
-                Console.WriteLine("Enter salary: ");
+                Console.WriteLine("Enter percentage: ");
                 percentageBuf = Console.ReadLine();
                 try
                 {
@@ -198,7 +198,7 @@ public class Menu
             string overtimeHourlyWageBuf;
             while (true)
             {
-                Console.WriteLine("Enter salary: ");
+                Console.WriteLine("Enter overtimeHourlyWage: ");
                 overtimeHourlyWageBuf = Console.ReadLine();
                 try
                 {
@@ -223,7 +223,7 @@ public class Menu
             string standardOfWorkingHoursBuf;
             while (true)
             {
-                Console.WriteLine("Enter salary: ");
+                Console.WriteLine("Enter standardOfWorkingHours: ");
                 standardOfWorkingHoursBuf = Console.ReadLine();
                 try
                 {
@@ -236,8 +236,8 @@ public class Menu
                 }
             }
 
-            if (standardOfWorkingHours <= 0 && standardOfWorkingHours > 24)
-                Console.Write("Invalid 'normalHourlyWage' argument. " +
+            if (standardOfWorkingHours <= 0 || standardOfWorkingHours > 24)
+                Console.Write("Invalid 'standardOfWorkingHours' argument. " +
                                                  "Value must be greater than zero and lower than 24. Try again.\n");
             else
                 break;
@@ -249,42 +249,41 @@ public class Menu
 
     private void HandleAddCommissionWageWorker()
     {
-        try
-        {
-            var worker = EnterCommissionWageWorker();
-            Console.Write("GGqqq");
-            company.RecruitWorker(worker);
-            Console.Write("Worker has been successfully recruited!\n");
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine("Exception: " + e.Message);
-        }
+        var worker = EnterCommissionWageWorker();
+           
+        company.RecruitWorker(worker);
+        Console.Write("Worker has been successfully recruited!\n");
+
     }
 
     private void HandleAddHourlyWageWorker()
     {
-        try
-        {
-            var worker = EnterHourlyWageWorker();
-            company.RecruitWorker(worker);
-            Console.Write("Worker has been successfully recruited!\n");
-        }
-        catch (Exception e) 
-        {
-            Debug.WriteLine("Exception: " + e.Message);
-        }
+        var worker = EnterHourlyWageWorker();
+        company.RecruitWorker(worker);
+        Console.Write("Worker has been successfully recruited!\n");
     }
 
     private void HandleFireWorker()
     {
-        var fullName = "";
+        string fullName = "";
 
-        Console.Write("Enter the full name of worker to fire: ");
-        fullName = Console.ReadLine();
+        while (true)
+        {
+            Console.Write("Enter the full name of worker to fire: ");
+            fullName = Console.ReadLine();
 
-        company.FireWorker(ref fullName);
-        Console.Write("Worker has been successfully fired!\n");
+            try
+            {
+                company.FireWorker(ref fullName);
+                Console.Write("Worker has been successfully fired!\n");
+                    break;
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            break;
+        }
     }
 
     private void HandlePrintWorkers()
