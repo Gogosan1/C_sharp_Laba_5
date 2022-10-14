@@ -20,7 +20,7 @@ public class Company
         workedDaysCount = 0;
     }
     //Найм сотрудника с почасовой оплатой
-    public void RecruitWorker(ref Worker newWorker)
+    public void RecruitWorker(Worker newWorker)
     {
         foreach (var worker in WorkerList)
             if (worker.FullName == newWorker.FullName)

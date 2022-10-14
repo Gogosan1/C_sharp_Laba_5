@@ -51,7 +51,7 @@ public class Menu
         //     throw new ArgumentException("Invalid value. Expected integer\n");
         // }
 
-        Worker worker = new ref CommissionWageWorker(ref fullName, gender, salary, percentage); // не работает!!!!
+        Worker worker = new CommissionWageWorker(ref fullName, gender, salary, percentage); // не работает!!!!
 
         return worker;
     }
@@ -112,7 +112,7 @@ public class Menu
         {
             var worker = EnterCommissionWageWorker();
             Console.Write("GGqqq");
-            company.RecruitWorker(ref worker);
+            company.RecruitWorker(worker);
             Console.Write("Worker has been successfully recruited!\n");
         }
         catch (Exception e)
@@ -126,7 +126,7 @@ public class Menu
         try
         {
             var worker = EnterHourlyWageWorker();
-            company.RecruitWorker(ref worker);
+            company.RecruitWorker(worker);
             Console.Write("Worker has been successfully recruited!\n");
         }
         catch (Exception e) // не выводит !!!!!
@@ -197,22 +197,22 @@ public class Menu
 
             switch (option)
             {
-                case 1:
+                case ADD_HOURLY_WAGE_WORKER_OPTION:
                     HandleAddHourlyWageWorker();
                     break;
-                case 2:
+                case ADD_COMMISSION_WAGE_WORKER_OPTION:
                     HandleAddCommissionWageWorker();
                     break;
-                case 3:
+                case FIRE_WORKER_BY_FULLNAME_OPTION:
                     HandleFireWorker();
                     break;
-                case 4:
+                case SIMULATE_WORK_OPTION:
                     HandleSimulateWork();
                     break;
-                case 5:
+                case PRINT_WORKERS_OPTION:
                     HandlePrintWorkers();
                     break;
-                case 6:
+                case EXIT_OPTION:
                     return;
                 default:
                     Console.WriteLine("Error! Undefined menu option\n");
@@ -222,11 +222,11 @@ public class Menu
     }
 
     private readonly Company company;
-    private readonly uint ADD_HOURLY_WAGE_WORKER_OPTION = 1;
-    private readonly uint ADD_COMMISSION_WAGE_WORKER_OPTION = 2;
-    private readonly uint FIRE_WORKER_BY_FULLNAME_OPTION = 3;
-    private readonly uint SIMULATE_WORK_OPTION = 4;
-    private readonly uint PRINT_WORKERS_OPTION = 5;
-    private readonly uint EXIT_OPTION = 6;
+    private const int ADD_HOURLY_WAGE_WORKER_OPTION = 1;
+    private const int ADD_COMMISSION_WAGE_WORKER_OPTION = 2;
+    private const int FIRE_WORKER_BY_FULLNAME_OPTION = 3;
+    private const int SIMULATE_WORK_OPTION = 4;
+    private const int PRINT_WORKERS_OPTION = 5;
+    private const int EXIT_OPTION = 6;
 
 }
