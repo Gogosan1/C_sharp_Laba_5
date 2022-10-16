@@ -18,12 +18,12 @@ public class Menu
     {
         company = new Company();
     }
-    public static Worker EnterCommissionWageWorker()
+    public Worker EnterCommissionWageWorker()
     {
         Gender gender;
         string fullName;
         int salary, percentage;
-
+       
         while (true)
         {
             Console.WriteLine("Enter fullname: ");
@@ -32,7 +32,13 @@ public class Menu
             if (fullName.Length == 0)
                 Console.Write("Invalid 'fullName' argument. The length must be non-zero. Try again.\n");
             else
-                break;
+            {
+                if (company.CheckWorkerExist(ref fullName))
+                    Console.Write("Worker with name " + fullName +
+                                        " already recruited");
+                else
+                    break;
+            }
         }
 
         while (true)
@@ -120,7 +126,7 @@ public class Menu
         return worker;
     }
 
-    public static Worker EnterHourlyWageWorker()
+    public Worker EnterHourlyWageWorker()
     {
         Gender gender;
         string fullName;
@@ -134,7 +140,13 @@ public class Menu
             if (fullName.Length == 0)
                 Console.Write("Invalid 'fullName' argument. The length must be non-zero. Try again.\n");
             else
-                break;
+            {
+                if (company.CheckWorkerExist(ref fullName))
+                    Console.Write("Worker with name " + fullName +
+                                        " already recruited");
+                else
+                    break;
+            }
         }
 
         while (true)
@@ -250,7 +262,7 @@ public class Menu
     private void HandleAddCommissionWageWorker()
     {
         var worker = EnterCommissionWageWorker();
-           
+
         company.RecruitWorker(worker);
         Console.Write("Worker has been successfully recruited!\n");
 

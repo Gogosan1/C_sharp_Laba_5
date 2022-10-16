@@ -19,14 +19,17 @@ public class Company
         WorkerList = new List<Worker>();
         workedDaysCount = 0;
     }
+
+    public bool CheckWorkerExist(ref string FullName) 
+    {
+        foreach (var worker in WorkerList)
+            if (worker.FullName == FullName)
+                return true;
+        return false;
+    }
     //Найм сотрудника с почасовой оплатой
     public void RecruitWorker(Worker newWorker)
     {
-        foreach (var worker in WorkerList)
-            if (worker.FullName == newWorker.FullName)
-                throw new ArgumentException("Worker with name " + newWorker.FullName +
-                                            " already recruited");
-
         WorkerList.Add(newWorker);
     }
 
