@@ -78,7 +78,7 @@ public class Menu
         return worker;
     }
 
-    public static Worker EnterHourlyWageWorker()
+    public static  Worker EnterHourlyWageWorker()
     {
         Gender gender;
         string fullName;

@@ -24,7 +24,7 @@ public class Company
     public void RecruitWorker(Worker newWorker)
     {
         foreach (var worker in WorkerList)
-            if (worker.FullName == newWorker.FullName)
+            if ( String.Compare(worker.FullName, newWorker.FullName) == 0)
                 throw new ArgumentException("Worker with name " + newWorker.FullName +
                                 " already recruited");
 
