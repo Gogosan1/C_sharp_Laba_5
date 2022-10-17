@@ -20,17 +20,15 @@ public class Company
         workedDaysCount = 0;
     }
 
-    public bool CheckWorkerExist(ref string FullName) 
-    {
-        foreach (var worker in WorkerList)
-            if (worker.FullName == FullName)
-                return true;
-        return false;
-    }
     //Найм сотрудника с почасовой оплатой
     public void RecruitWorker(Worker newWorker)
     {
-        WorkerList.Add(newWorker);
+        foreach (var worker in WorkerList)
+            if (worker.FullName == newWorker.FullName)
+                throw new ArgumentException("Worker with name " + newWorker.FullName +
+                                " already recruited");
+
+                WorkerList.Add(newWorker);
     }
 
     //Увольнение сотрудника с почасовой оплатой

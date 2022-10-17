@@ -19,6 +19,19 @@ public class HourlyWageWorker : Worker
     public HourlyWageWorker(ref string _fullName, Gender _gender, int _normalHourlyWage, int _overtimeHourlyWage, int _standardOfWorkingHours)
     : base(ref _fullName, _gender)
     {
+
+        if (_normalHourlyWage <= 0)
+            throw new ArgumentException("Invalid 'normalHourlyWage' argument. " +
+                                                     "Value must be greater than zero. Try again.\n");
+        
+        if (_overtimeHourlyWage <= 0)
+            throw new ArgumentException("Invalid 'normalHourlyWage' argument. " +
+                                                     "Value must be greater than zero. Try again.\n");
+
+        if (_standardOfWorkingHours <= 0 || _standardOfWorkingHours > 24)
+            throw new ArgumentException("Invalid 'standardOfWorkingHours' argument. " +
+                                             "Value must be greater than zero and lower than 24. Try again.\n");
+
         StandardOfWorkingHours = _standardOfWorkingHours;
         NormalHourlyWage = _normalHourlyWage;
         OvertimeHourlyWage = _overtimeHourlyWage;

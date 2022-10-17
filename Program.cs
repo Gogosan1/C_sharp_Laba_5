@@ -18,241 +18,132 @@ public class Menu
     {
         company = new Company();
     }
-    public Worker EnterCommissionWageWorker()
+    public static Worker EnterCommissionWageWorker()
     {
         Gender gender;
         string fullName;
         int salary, percentage;
        
-        while (true)
+        Console.WriteLine("Enter fullname: ");
+        fullName = Console.ReadLine();
+
+        string genderBuf;
+        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
+        genderBuf = Console.ReadLine();
+        try
         {
-            Console.WriteLine("Enter fullname: ");
-            fullName = Console.ReadLine();
-
-            if (fullName.Length == 0)
-                Console.Write("Invalid 'fullName' argument. The length must be non-zero. Try again.\n");
-            else
-            {
-                if (company.CheckWorkerExist(ref fullName))
-                    Console.Write("Worker with name " + fullName +
-                                        " already recruited");
-                else
-                    break;
-            }
+            int gen = Convert.ToInt32(genderBuf);
         }
-
-        while (true)
+        catch (FormatException)
         {
-            string genderBuf;
-
-            while (true)
-            {
-                Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
-                genderBuf = Console.ReadLine();
-                try
-                {
-                    int gen = Convert.ToInt32(genderBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (Convert.ToInt32(genderBuf) != 1 && Convert.ToInt32(genderBuf) != 2)
-                Console.Write("Invalid value. Expected '1' or '2'. Try again.\n");
-            else
-            {
-                if (Convert.ToInt32(genderBuf) == 1)
-                    gender = Gender.Male;
-                else
-                    gender = Gender.Female;
-                break;
-            }
+            throw new FormatException("Format Exeption. Expected int value.\n");
         }
-
-        while (true)
+ 
+        if (Convert.ToInt32(genderBuf) != 1 && Convert.ToInt32(genderBuf) != 2)
+            throw new ArgumentException("Invalid value. Expected '1' or '2'. Try again.\n");
+        else
         {
-            string salaryBuf;
-            while (true)
-            {
-                Console.WriteLine("Enter salary: ");
-                salaryBuf = Console.ReadLine();
-                try
-                {
-                    salary = Convert.ToInt32(salaryBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (salary <= 0)
-                Console.Write("Invalid 'Salary' argument. Salary must be positive number.\n");
+            if (Convert.ToInt32(genderBuf) == 1)
+                gender = Gender.Male;
             else
-                break;
+                gender = Gender.Female;
         }
+ 
 
-        while (true)
+        string salaryBuf;
+        Console.WriteLine("Enter salary: ");
+        salaryBuf = Console.ReadLine();
+        try
         {
-            string percentageBuf;
-            while (true)
-            {
-                Console.WriteLine("Enter percentage: ");
-                percentageBuf = Console.ReadLine();
-                try
-                {
-                    percentage = Convert.ToInt32(percentageBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (percentage <= 0 && percentage > 100)
-                Console.Write("Invalid 'percentage' argument." +
-                                "Value must be greater than zero and less than 100.\ns");
-            else
-                break;
+            salary = Convert.ToInt32(salaryBuf);
         }
-      
+        catch (FormatException)
+        {
+            throw new FormatException("Format Exeption. Expected int value.\n");
+        }
+    
+        string percentageBuf;
+        Console.WriteLine("Enter percentage: ");
+        percentageBuf = Console.ReadLine();
+        try
+        {
+            percentage = Convert.ToInt32(percentageBuf);
+        }
+        catch (FormatException)
+        {
+            throw new FormatException("Format Exeption. Expected int value.\n");
+        }
+    
         Worker worker = new CommissionWageWorker(ref fullName, gender, salary, percentage);
-
         return worker;
     }
 
-    public Worker EnterHourlyWageWorker()
+    public static Worker EnterHourlyWageWorker()
     {
         Gender gender;
         string fullName;
         int normalHourlyWage, overtimeHourlyWage, standardOfWorkingHours;
 
-        while (true)
-        {
-            Console.WriteLine("Enter fullname: ");
-            fullName = Console.ReadLine();
+        Console.WriteLine("Enter fullname: ");
+        fullName = Console.ReadLine();
 
-            if (fullName.Length == 0)
-                Console.Write("Invalid 'fullName' argument. The length must be non-zero. Try again.\n");
-            else
-            {
-                if (company.CheckWorkerExist(ref fullName))
-                    Console.Write("Worker with name " + fullName +
-                                        " already recruited");
-                else
-                    break;
-            }
+        string genderBuf;
+        Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
+        genderBuf = Console.ReadLine();
+        try
+        {
+            int gen = Convert.ToInt32(genderBuf);
+        }
+        catch (FormatException)
+        {
+            throw new FormatException("Format Exeption. Expected int value.\n");
         }
 
-        while (true)
+        if (Convert.ToInt32(genderBuf) != 1 && Convert.ToInt32(genderBuf) != 2)
+            throw new ArgumentException("Invalid value. Expected '1' or '2'. Try again.\n");
+        else
         {
-            string genderBuf;
-
-            while (true)
-            {
-                Console.WriteLine("Enter gender(1 - Male, 2 - Female): ");
-                genderBuf = Console.ReadLine();
-                try
-                {
-                    int gen = Convert.ToInt32(genderBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (Convert.ToInt32(genderBuf) != 1 && Convert.ToInt32(genderBuf) != 2)
-                Console.Write("Invalid value. Expected '1' or '2'. Try again.\n");
+            if (Convert.ToInt32(genderBuf) == 1)
+                gender = Gender.Male;
             else
-            {
-                if (Convert.ToInt32(genderBuf) == 1)
-                    gender = Gender.Male;
-                else
-                    gender = Gender.Female;
-                break;
-            }
+                gender = Gender.Female;
+
         }
 
-        while (true)
+        string normalHourlyWageBuf;
+        Console.WriteLine("Enter salary: ");
+        normalHourlyWageBuf = Console.ReadLine();
+        try
         {
-            string normalHourlyWageBuf;
-            while (true)
-            {
-                Console.WriteLine("Enter salary: ");
-                normalHourlyWageBuf = Console.ReadLine();
-                try
-                {
-                    normalHourlyWage = Convert.ToInt32(normalHourlyWageBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (normalHourlyWage <= 0)
-                Console.Write("Invalid 'normalHourlyWage' argument. " +
-                                                         "Value must be greater than zero. Try again.\n");
-            else
-                break;
+            normalHourlyWage = Convert.ToInt32(normalHourlyWageBuf);
         }
-
-        while (true)
+        catch (FormatException)
         {
-            string overtimeHourlyWageBuf;
-            while (true)
-            {
-                Console.WriteLine("Enter overtimeHourlyWage: ");
-                overtimeHourlyWageBuf = Console.ReadLine();
-                try
-                {
-                    overtimeHourlyWage = Convert.ToInt32(overtimeHourlyWageBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (overtimeHourlyWage <= 0)
-                Console.Write("Invalid 'normalHourlyWage' argument. " +
-                                                         "Value must be greater than zero. Try again.\n");
-            else
-                break;
+            throw new FormatException("Format Exeption. Expected int value.\n");
         }
-
-        while (true)
+        
+        string overtimeHourlyWageBuf;
+        Console.WriteLine("Enter overtimeHourlyWage: ");
+        overtimeHourlyWageBuf = Console.ReadLine();
+        try
         {
-            string standardOfWorkingHoursBuf;
-            while (true)
-            {
-                Console.WriteLine("Enter standardOfWorkingHours: ");
-                standardOfWorkingHoursBuf = Console.ReadLine();
-                try
-                {
-                    standardOfWorkingHours = Convert.ToInt32(standardOfWorkingHoursBuf);
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Format Exeption. Expected int value.\n");
-                }
-            }
-
-            if (standardOfWorkingHours <= 0 || standardOfWorkingHours > 24)
-                Console.Write("Invalid 'standardOfWorkingHours' argument. " +
-                                                 "Value must be greater than zero and lower than 24. Try again.\n");
-            else
-                break;
+            overtimeHourlyWage = Convert.ToInt32(overtimeHourlyWageBuf);
+        }
+        catch (FormatException)
+        {
+            throw new FormatException("Format Exeption. Expected int value.\n");
+        }
+    
+        string standardOfWorkingHoursBuf;
+        Console.WriteLine("Enter standardOfWorkingHours: ");
+        standardOfWorkingHoursBuf = Console.ReadLine();
+        try
+        {
+            standardOfWorkingHours = Convert.ToInt32(standardOfWorkingHoursBuf);
+        }
+        catch (FormatException)
+        {
+            throw new FormatException("Format Exeption. Expected int value.\n");
         }
        
         Worker worker = new HourlyWageWorker(ref fullName, gender, normalHourlyWage, overtimeHourlyWage, standardOfWorkingHours);
@@ -261,18 +152,43 @@ public class Menu
 
     private void HandleAddCommissionWageWorker()
     {
-        var worker = EnterCommissionWageWorker();
+        try
+        {
+            var worker = EnterCommissionWageWorker();
 
-        company.RecruitWorker(worker);
-        Console.Write("Worker has been successfully recruited!\n");
+            company.RecruitWorker(worker);
+            Console.Write("Worker has been successfully recruited!\n");
 
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch (FormatException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 
     private void HandleAddHourlyWageWorker()
     {
-        var worker = EnterHourlyWageWorker();
-        company.RecruitWorker(worker);
-        Console.Write("Worker has been successfully recruited!\n");
+        try
+        {
+            var worker = EnterHourlyWageWorker();
+
+            company.RecruitWorker(worker);
+            Console.Write("Worker has been successfully recruited!\n");
+
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch (FormatException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
     }
 
     private void HandleFireWorker()
