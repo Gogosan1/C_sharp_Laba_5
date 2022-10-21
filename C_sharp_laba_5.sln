@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C_sharp_laba_5", "C_sharp_laba_5.csproj", "{4D983D68-CD0F-4B4E-82E5-5703893CD35D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C_sharp_laba_5", "C_sharp_laba_5.csproj", "{4D983D68-CD0F-4B4E-82E5-5703893CD35D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C_sharp_laba_5Tests1", "..\C_sharp_laba_5Tests1\C_sharp_laba_5Tests1.csproj", "{83AA167C-F4D6-4B0B-ABA8-996BF5B7567E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4D983D68-CD0F-4B4E-82E5-5703893CD35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D983D68-CD0F-4B4E-82E5-5703893CD35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D983D68-CD0F-4B4E-82E5-5703893CD35D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AA167C-F4D6-4B0B-ABA8-996BF5B7567E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AA167C-F4D6-4B0B-ABA8-996BF5B7567E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AA167C-F4D6-4B0B-ABA8-996BF5B7567E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AA167C-F4D6-4B0B-ABA8-996BF5B7567E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

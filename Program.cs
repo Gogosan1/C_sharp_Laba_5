@@ -78,7 +78,7 @@ public class Menu
         return worker;
     }
 
-    public static  Worker EnterHourlyWageWorker()
+    public static Worker EnterHourlyWageWorker()
     {
         Gender gender;
         string fullName;
@@ -150,7 +150,7 @@ public class Menu
         return worker;
     }
 
-    private void HandleAddCommissionWageWorker()
+    public void HandleAddCommissionWageWorker()
     {
         try
         {
@@ -170,7 +170,7 @@ public class Menu
         }
     }
 
-    private void HandleAddHourlyWageWorker()
+    public void HandleAddHourlyWageWorker()
     {
         try
         {
@@ -225,13 +225,30 @@ public class Menu
     private void HandleSimulateWork()
     {
         int days;
+        while (true)
+        {
+            string daysBuf;
 
-        Console.Write("Enter number of working days: ");
-        days = Convert.ToInt32(Console.ReadLine());
 
-        // if (HandleError("Error! Invalid value. Expected unsigned integer\n"))
-        //   return;
+            Console.Write("Enter number of working days: ");
+            daysBuf = Console.ReadLine();
 
+            try
+            {
+                days = Convert.ToInt32(daysBuf);
+                if (days <= 0)
+                    Console.WriteLine("Invalid 'Days' argument. Days must be positive number.\n");
+                else
+                    break;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Format Exeption. Expected int value.\n");
+            }
+
+            
+        }
+        
         Console.Write("Expenses: ");
         Console.Write(company.SimulateWork(days));
         Console.Write("\n");
@@ -242,10 +259,13 @@ public class Menu
 
     public void Listen()
     {
+        int option;
 
         while (true)
         {
-            Console.Write("\n\tMenu options\n");
+            while (true)
+            {
+                Console.Write("\n\tMenu options\n");
             Console.Write(ADD_HOURLY_WAGE_WORKER_OPTION);
             Console.Write("-Add hourly wage worker\n");
             Console.Write(ADD_COMMISSION_WAGE_WORKER_OPTION);
@@ -262,10 +282,20 @@ public class Menu
 
             Console.Write("Enter option: ");
 
-            int option;
-            //Перед
-            option = Convert.ToInt32(Console.ReadLine());
-
+             
+            string optionBuf;
+            
+                optionBuf = Console.ReadLine();
+                try
+                {
+                    option = Convert.ToInt32(optionBuf);
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.Write("Format Exeption. Expected int value.\n");
+                }
+            }
             switch (option)
             {
                 case ADD_HOURLY_WAGE_WORKER_OPTION:
