@@ -6,11 +6,9 @@ public class CommissionWageWorker : Worker
 {
     public int Salary { get; init; }
     public int Percentage { get; init; }
-    public override Gender Description { get; init; }
-    public override string FullName { get; init; }
 
-    public CommissionWageWorker(ref string _fullName, Gender _gender, int _salary, int _percentage)
-        : base(ref _fullName, _gender) 
+    public CommissionWageWorker(string _fullName, Gender _gender, int _salary, int _percentage)
+        : base(_fullName, _gender) 
     {
         if (_salary <= 0)
             throw new ArgumentException("Invalid 'Salary' argument. Salary must be positive number.\n");

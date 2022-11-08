@@ -32,7 +32,7 @@ public class Company
     }
 
     //Увольнение сотрудника с почасовой оплатой
-    public void FireWorker(ref string fullName)
+    public void FireWorker(string fullName)
     {
         foreach (var worker in WorkerList)
             if (fullName == worker.FullName)

@@ -10,14 +10,11 @@ using static PayrolSystem.Worker;
 namespace C_sharp_laba_5;
 public class HourlyWageWorker : Worker
 {
-
-    public override Gender Description { get; init; }
-    public override string FullName { get; init; }
     public int NormalHourlyWage { get; init; }
     public int OvertimeHourlyWage { get; init; }
     public int StandardOfWorkingHours { get; init; }
-    public HourlyWageWorker(ref string _fullName, Gender _gender, int _normalHourlyWage, int _overtimeHourlyWage, int _standardOfWorkingHours)
-    : base(ref _fullName, _gender)
+    public HourlyWageWorker(string _fullName, Gender _gender, int _normalHourlyWage, int _overtimeHourlyWage, int _standardOfWorkingHours)
+    : base(_fullName, _gender)
     {
 
         if (_normalHourlyWage <= 0)
