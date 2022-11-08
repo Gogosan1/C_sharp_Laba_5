@@ -10,7 +10,7 @@ public abstract class Worker
         Female
     }
 
-    public Worker(string? fullName, Gender gender)
+    public Worker(string fullName, Gender gender)
     {
         if (fullName.Length == 0)
             throw new ArgumentException("Invalid 'fullName' argument. The length must be non-zero. Try again.\n");

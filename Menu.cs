@@ -1,10 +1,4 @@
 ﻿using PayrolSystem;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.IO.Pipes;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using static PayrolSystem.Worker;
 
 namespace C_sharp_laba_5
